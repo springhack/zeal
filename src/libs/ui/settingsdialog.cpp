@@ -23,6 +23,7 @@
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
+#include "../util/macos_platform.h"
 
 #include <qxtglobalshortcut/qxtglobalshortcut.h>
 
@@ -171,6 +172,7 @@ void SettingsDialog::loadSettings()
     const Core::Settings * const settings = Core::Application::instance()->settings();
 
     // General Tab
+    ui->disableDockCheckBox->setChecked(settings->disableDock);
     ui->startMinimizedCheckBox->setChecked(settings->startMinimized);
     ui->checkForUpdateCheckBox->setChecked(settings->checkForUpdate);
 
@@ -251,6 +253,7 @@ void SettingsDialog::saveSettings()
     Core::Settings * const settings = Core::Application::instance()->settings();
 
     // General Tab
+    settings->disableDock = ui->disableDockCheckBox->isChecked();
     settings->startMinimized = ui->startMinimizedCheckBox->isChecked();
     settings->checkForUpdate = ui->checkForUpdateCheckBox->isChecked();
 
@@ -313,4 +316,6 @@ void SettingsDialog::saveSettings()
     settings->proxyPassword = ui->proxyPasswordEdit->text();
 
     settings->save();
+
+    macos::setDockEnabled(!settings->disableDock);
 }

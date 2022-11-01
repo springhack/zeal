@@ -7,6 +7,9 @@ add_library(Util STATIC
 
     # Show headers without .cpp in Qt Creator.
     caseinsensitivemap.h
+
+    macos_platform.h
+    macos_platform.mm
 )
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
@@ -15,6 +18,7 @@ target_link_libraries(Util Qt${QT_VERSION_MAJOR}::Core)
 find_package(SQLite REQUIRED)
 include_directories(${SQLite_INCLUDE_DIR})
 target_link_libraries(Util ${SQLite_LIBRARY})
+target_link_libraries(Util "-framework Cocoa")
 
 # TODO: Do not export SQLite headers.
 target_include_directories(Util PUBLIC ${SQLite_INCLUDE_DIR})

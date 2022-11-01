@@ -327,6 +327,10 @@ void MainWindow::addTab(BrowserTab *tab, int index)
 
     tab->webControl()->setWebBridgeObject("zAppBridge", m_webBridge);
     tab->searchSidebar()->focusSearchEdit();
+    tab->searchSidebar()->setHideFunc([this]() {
+      this->hide();
+    });
+
 
     if (index == -1) {
         index = m_settings->openNewTabAfterActive
@@ -362,7 +366,7 @@ void MainWindow::setupTabBar()
     m_tabBar->setUsesScrollButtons(true);
     m_tabBar->setDocumentMode(true);
     m_tabBar->setElideMode(Qt::ElideRight);
-    m_tabBar->setStyleSheet(QStringLiteral("QTabBar::tab { width: 150px; }"));
+    m_tabBar->setStyleSheet(QStringLiteral("QTabBar::tab { width: 200px; }"));
     m_tabBar->setMovable(true);
 
     connect(m_tabBar, &QTabBar::currentChanged, this, [this](int index) {
@@ -469,14 +473,27 @@ void MainWindow::changeEvent(QEvent *event)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    event->ignore();
+    hide();
+    /*
     if (m_settings->showSystrayIcon && m_settings->hideOnClose) {
         event->ignore();
         toggleWindow();
     }
+    */
 }
 
 bool MainWindow::eventFilter(QObject *object, QEvent *event)
 {
+
+    switch (event->type()) {
+      case QEvent::WindowDeactivate:
+        hide();
+        break;
+      default:
+        break;
+    }
+
     if (object == m_tabBar) {
         switch (event->type()) {
         case QEvent::MouseButtonRelease: {

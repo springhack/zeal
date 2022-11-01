@@ -99,7 +99,12 @@ bool SearchEdit::event(QEvent *event)
 
             return true;
         } else if (keyEvent->key() == Qt::Key_Escape) {
-            clearQuery();
+            if (text().isEmpty()) {
+              // hide window
+              hide_window_();
+            } else {
+              clearQuery();
+            }
             return true;
         }
 
@@ -174,6 +179,10 @@ QString SearchEdit::currentCompletion(const QString &text) const
         return QString();
 
     return m_prefixCompleter->currentCompletion();
+}
+
+void SearchEdit::setHideWindowFunc(std::function<void()> func) {
+  hide_window_ = func;
 }
 
 int SearchEdit::queryStart() const

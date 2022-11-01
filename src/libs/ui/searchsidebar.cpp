@@ -266,6 +266,10 @@ SearchSidebar::SearchSidebar(const SearchSidebar *other, QWidget *parent)
     });
 }
 
+void SearchSidebar::setHideFunc(std::function<void()> func) {
+  m_searchEdit->setHideWindowFunc(func);
+}
+
 void SearchSidebar::setTreeViewModel(QAbstractItemModel *model, bool isRootDecorated)
 {
     QItemSelectionModel *oldSelectionModel = m_treeView->selectionModel();

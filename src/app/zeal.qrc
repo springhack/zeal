@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="zeal.ico">resources/zeal.ico</file>
+        <file alias="zeal.ico">resources/icon.ico</file>
     </qresource>
     <qresource prefix="/browser">
         <file alias="assets/css/darkmode.css">resources/browser/assets/css/darkmode.css</file>
@@ -271,9 +271,9 @@
         <file alias="Word@2x.png">resources/icons/type/Word@2x.png</file>
     </qresource>
     <qresource prefix="/icons/logo">
-        <file alias="64x64.png">resources/icons/logo/64x64.png</file>
-        <file alias="128x128.png">resources/icons/logo/128x128.png</file>
-        <file alias="icon.png">resources/icons/logo/icon.png</file>
-        <file alias="icon@2x.png">resources/icons/logo/icon@2x.png</file>
+        <file alias="64x64.png">resources/icons/icon/64x64.png</file>
+        <file alias="128x128.png">resources/icons/icon/128x128.png</file>
+        <file alias="icon.png">resources/icons/icon/icon.png</file>
+        <file alias="icon@2x.png">resources/icons/icon/icon@2x.png</file>
     </qresource>
 </RCC>

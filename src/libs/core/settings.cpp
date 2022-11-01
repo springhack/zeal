@@ -69,6 +69,7 @@ void Settings::load()
     migrate(settings.data());
 
     // TODO: Put everything in groups
+    disableDock = settings->value(QStringLiteral("disable_dock"), false).toBool();
     startMinimized = settings->value(QStringLiteral("start_minimized"), false).toBool();
     checkForUpdate = settings->value(QStringLiteral("check_for_update"), true).toBool();
 
@@ -190,6 +191,7 @@ void Settings::save()
     QScopedPointer<QSettings> settings(qsettings());
 
     // TODO: Put everything in groups
+    settings->setValue(QStringLiteral("disable_dock"), disableDock);
     settings->setValue(QStringLiteral("start_minimized"), startMinimized);
     settings->setValue(QStringLiteral("check_for_update"), checkForUpdate);
 

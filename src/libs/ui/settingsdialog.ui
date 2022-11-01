@@ -34,6 +34,13 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
+           <widget class="QCheckBox" name="disableDockCheckBox">
+            <property name="text">
+             <string>Disable dock icon</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="startMinimizedCheckBox">
             <property name="text">
              <string>Start minimized</string>
@@ -71,6 +78,9 @@
           </item>
           <item>
            <widget class="QCheckBox" name="hideToSystrayCheckBox">
+            <property name="visible">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Hide to system tray on window close</string>
             </property>

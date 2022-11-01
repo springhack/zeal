@@ -191,6 +191,17 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QApplication> qapp(new QApplication(argc, argv));
 
+    QString appDir = QCoreApplication::applicationDirPath();
+    QString qssFilePath = appDir.replace("MacOS", "Resources/MaterialDark.qss");
+    QFile qssFile(qssFilePath);
+    if (!qssFile.exists()) {
+      printf("Unable to set stylesheet, file not found\n");
+    } else {
+      qssFile.open(QFile::ReadOnly | QFile::Text);
+      QTextStream qssStream(&qssFile);
+      qapp->setStyleSheet(qssStream.readAll());
+    }
+
     const CommandLineParameters clParams = parseCommandLine(qapp->arguments());
 
 #ifdef Q_OS_WIN32

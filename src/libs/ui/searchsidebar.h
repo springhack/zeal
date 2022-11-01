@@ -54,6 +54,8 @@ public:
 
     Registry::SearchModel *pageTocModel() const;
 
+    void setHideFunc(std::function<void()>);
+
 signals:
     void activated();
     void navigationRequested(const QUrl &url);

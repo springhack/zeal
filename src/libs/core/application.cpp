@@ -28,6 +28,8 @@
 #include "networkaccessmanager.h"
 #include "settings.h"
 
+#include "../util/macos_platform.h"
+
 #include <registry/docsetregistry.h>
 #include <registry/searchquery.h>
 #include <ui/mainwindow.h>
@@ -90,6 +92,8 @@ Application::Application(QObject *parent)
     } else {
         m_mainWindow->show();
     }
+
+    macos::setDockEnabled(!m_settings->disableDock);
 }
 
 Application::~Application()

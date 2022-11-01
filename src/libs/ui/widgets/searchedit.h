@@ -39,6 +39,7 @@ class SearchEdit : public QLineEdit
 public:
     explicit SearchEdit(QWidget *parent = nullptr);
 
+    void setHideWindowFunc(std::function<void()>);
     void clearQuery();
     void selectQuery();
     void setCompletions(const QStringList &completions);
@@ -56,6 +57,7 @@ private:
 
     QCompleter *m_prefixCompleter = nullptr;
     QLabel *m_completionLabel = nullptr;
+    std::function<void()> hide_window_ = []() {};
 };
 
 } // namespace WidgetUi

@@ -42,6 +42,7 @@ public:
      */
 
     // Startup
+    bool disableDock;
     bool startMinimized;
     bool checkForUpdate;
     // TODO: bool restoreLastState;
